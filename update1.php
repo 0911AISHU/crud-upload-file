@@ -1,0 +1,22 @@
+<?php
+include 'config.php';
+if(isset($_POST['update'])){
+    $ID = $_POST['Id'];
+    $NAME = $_POST['name'];
+    $PHONENUMBER = $_POST['price'];
+    $EMAIL = $_POST['price'];
+    $DATE = $_POST['price'];
+    $TIME = $_POST['price'];
+    $ADDRESS = $_POST['price'];
+    $IMAGE = $_FILES['image'];
+    $img_loc = $_FILES['image']['tmp_name'];
+    $img_name = $_FILES['image']['name'];
+    $img_des = "uploadImage/".$img_name;
+    move_uploaded_file($img_loc,'uploadImage/'.$img_name);
+
+    mysqli_query($con,"UPDATE `bookappointment` SET `Name`='$NAME',`Phonenumber`='$PHONENUMBER',`Email`='$EMAIL',`Date`='$DATE',`Time`='$TIME',`Address`='$ADDRESS',`Image`='$img_des' WHERE Id = '$ID' ");
+    header("location:index.php");
+
+
+}
+?>
